@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+           #ml{padding: 6px;font-size: 15px;border-radius: 10px;}
+        </style>
+    </head>
+<body style="background-color: grey;">
+    <p style="font-size: 20px;">select the color and click on start button to play instant color presser game</p>
+    <select id="ml">
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+        <option value="yellow">yellow</option>
+        <option value="black">black</option>
+    </select>
+<button onclick="startGame()" style="background-color: rgb(255, 208, 0);font-size: 15px;padding: 6px;border-radius: 10px;border: 1px solid black;">start game</button>
+<div id="demo" style="position: relative;"></div>
+
+<script>
+    var cont=document.getElementById("demo");
+    var tempcolor;
+    var counter=0;
+    function startGame()
+    {
+        var id=setInterval(run,1000)
+        function run()
+        {
+            var selecteditem=document.getElementById("ml").value;
+        console.log(selecteditem);
+        var colors=["red","blue","green","orange","yellow","black","pink","purple","peach"];
+        var randomnumber=Math.floor(Math.random()*9);
+        var newbutton=document.createElement("button");
+newbutton.style.width="60px";
+newbutton.style.height="60px";
+newbutton.style.borderRadius="40px";
+newbutton.style.border="1px solid black";
+newbutton.style.margin="10px";
+newbutton.style.backgroundColor=colors[randomnumber];
+tempcolor=colors[randomnumber];
+newbutton.onclick=function()
+{
+    if(selecteditem==tempcolor)
+    {
+        newbutton.remove();
+        counter++;
+    }
+    else
+    {
+        clearInterval(id);
+        cont.style.display="none";
+        alert("thanks for playing and your score is "+counter);
+        window.location.reload();
+    }
+}
+newbutton.style.position="relative";
+newbutton.style.animationDuration="2s";
+newbutton.style.animationDelay="0s"
+cont.appendChild(newbutton);
+        }
+    }
+</script>
+</body>
+</html>
